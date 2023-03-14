@@ -19,6 +19,6 @@ public class AirplaneNumber {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
-    private String pnrNumber;
+    private String numberPnr;
 
 }

@@ -4,22 +4,17 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
 import javax.persistence.*;
-
 
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "airports")
-public class Airport {
+@Table(name = "company_name")
+public class Company {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Column(name = "city_name",nullable = false)
-    private String nameOfCity;
-    private String airportName;
-    private String airportPnr;
-
+    private String companyName;
+    private String companyPnr;
 }
