@@ -19,7 +19,9 @@ public class Airport {
     private Long id;
     @Column(name = "city_name",nullable = false)
     private String nameOfCity;
+    @Column(unique = true,nullable = false)
     private String airportName;
+    @Column(unique = true,nullable = false)
     private String airportPnr;
 
 }
