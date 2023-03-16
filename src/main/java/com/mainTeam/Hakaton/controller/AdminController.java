@@ -34,6 +34,9 @@ public class AdminController {
     public List<UserDto> getAll () {
         return userService.getAllUser();
     }
-/*    @DeleteMapping("/Pnr")
-    public String delete*/
+    @DeleteMapping("/Pnr/delete/{id}")
+    public void deletePnr(@PathVariable Long id){
+        pnrService.deletePnr(id);
+    }
+
 }

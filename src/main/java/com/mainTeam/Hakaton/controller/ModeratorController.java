@@ -32,4 +32,12 @@ public class ModeratorController {
     public List<UserDto> getAll () {
         return userService.getAllUser();
     }
+    @GetMapping("/Pnr/all")
+    public List<Pnr> getAllPnr () {
+        return pnrService.getAllPnr();
+    }
+    @GetMapping("/Pnr/{id}")
+    public Pnr getPnrById (@PathVariable Long id) {
+        return pnrService.getById(id);
+    }
 }
