@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/Moderator")
+@RequestMapping("/moderator")
 public class ModeratorController {
     @Autowired
     PnrService pnrService;

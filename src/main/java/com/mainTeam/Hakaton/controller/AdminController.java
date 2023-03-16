@@ -12,13 +12,13 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/Admin")
+@RequestMapping("/admin")
 public class AdminController {
     @Autowired
     PnrService pnrService;
     @Autowired
     UserService userService;
-    @GetMapping ("/pnr_Reader/{pnr}")
+    @GetMapping ("/pnrReader/{pnr}")
     public String getPnrInNorm(@PathVariable String pnr){
         return pnrService.getPnrInNorm(pnr);
     }
@@ -38,5 +38,18 @@ public class AdminController {
     public void deletePnr(@PathVariable Long id){
         pnrService.deletePnr(id);
     }
+    @GetMapping("/pnr/all")
+    public List<Pnr> getAllPnr () {
+        return pnrService.getAllPnr();
+    }
+    @GetMapping("/pnr/{id}")
+    public Pnr getPnrById (@PathVariable Long id) {
+        return pnrService.getById(id);
+    }
+    @PostMapping("/pnr/save")
+    public Pnr savePnr (@RequestBody Pnr pnr) {
+        return pnrService.savePnr(pnr);
+    }
+
 
 }
