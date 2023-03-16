@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "pnrs")
+@Table(name = "pnr_history")
 public class PnrHistory {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

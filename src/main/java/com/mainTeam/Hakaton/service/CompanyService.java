@@ -13,10 +13,9 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CompanyService {
-    @Autowired
     CompanyRepo companyRepo;
-    public Company getCompany (String companyPnr) {
-        return companyRepo.getByCompanyPnr(companyPnr);
+    public Company getCompany (String companyCode) {
+        return companyRepo.getByCompanyCode(companyCode);
     }
     public Company getCompanyById (Long id) {
         return   companyRepo.findById(id).get();
