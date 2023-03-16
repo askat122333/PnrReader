@@ -14,8 +14,7 @@ VALUES (1,'Gatwick','LGW','London'),
        (13,'Брест','BQT','Беларусь'),
        (14,'Хитроу','LHR','Лондон'),
        (15,'Портленд','PDX','Портленд'),
-       (16,'Такома','SEA','Сиэтл'),
-       (17,'Брест','BQT','Беларусь');
+       (16,'Такома','SEA','Сиэтл');
 
 insert into company_name(id, company_name, company_pnr)
 values (1,'Air Canada','AC'),

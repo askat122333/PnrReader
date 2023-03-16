@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class PnrController {
     @Autowired
     PnrService pnrService;
-    @GetMapping("/PnrReader/{pnr}")
+    @GetMapping ("/PnrReader/{pnr}")
     public String getPnrInNorm(@PathVariable String pnr){
         return pnrService.getPnrInNorm(pnr);
     }
