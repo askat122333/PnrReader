@@ -18,23 +18,23 @@ public class AdminController {
     PnrService pnrService;
     @Autowired
     UserService userService;
-    @GetMapping ("/PnrReader/{pnr}")
+    @GetMapping ("/pnr_Reader/{pnr}")
     public String getPnrInNorm(@PathVariable String pnr){
         return pnrService.getPnrInNorm(pnr);
     }
-    @PutMapping("/Pnr/update")
+    @PutMapping("/pnr/update")
     public Pnr updatePnr(Pnr pnr) {
         return pnrService.updatePnr(pnr);
     }
-    @GetMapping("/User/{id}")
+    @GetMapping("/user/{id}")
     public UserDto getById (@PathVariable Long id) {
         return userService.getById(id);
     }
-    @GetMapping("/User/all")
+    @GetMapping("/user/all")
     public List<UserDto> getAll () {
         return userService.getAllUser();
     }
-    @DeleteMapping("/Pnr/delete/{id}")
+    @DeleteMapping("/pnr/delete/{id}")
     public void deletePnr(@PathVariable Long id){
         pnrService.deletePnr(id);
     }
