@@ -16,7 +16,7 @@ public class ModeratorController {
     PnrService pnrService;
     @Autowired
     UserService userService;
-    @GetMapping ("/pnr_reader/{pnr}")
+    @GetMapping ("/pnrReader/{pnr}")
     public String getPnrInNorm(@PathVariable String pnr){
         return pnrService.getPnrInNorm(pnr);
     }
