@@ -3,18 +3,15 @@ package com.mainTeam.Hakaton.service;
 import com.mainTeam.Hakaton.entity.Company;
 import com.mainTeam.Hakaton.repository.CompanyRepo;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 @AllArgsConstructor
-@NoArgsConstructor
 public class CompanyService {
     CompanyRepo companyRepo;
-    public Company getCompany (String companyCode) {
+    public String getByCompanyCode (String companyCode) {
         return companyRepo.getByCompanyCode(companyCode);
     }
     public Company getCompanyById (Long id) {

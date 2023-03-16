@@ -5,8 +5,6 @@ import com.mainTeam.Hakaton.model.UserDto;
 import com.mainTeam.Hakaton.model.UserSaveDto;
 import com.mainTeam.Hakaton.repository.UserRepository;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -15,9 +13,7 @@ import java.util.Optional;
 
 @Service
 @AllArgsConstructor
-@NoArgsConstructor
 public class UserService {
-    @Autowired
 UserRepository userRepo;
     public UserDto getById(Long id) {
         Optional<User> user = userRepo.findById(id);

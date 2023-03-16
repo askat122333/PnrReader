@@ -3,14 +3,12 @@ package com.mainTeam.Hakaton.service;
 import com.mainTeam.Hakaton.entity.Airport;
 import com.mainTeam.Hakaton.repository.AirportRepo;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 @AllArgsConstructor
-@NoArgsConstructor
 public class AirportService {
 
     AirportRepo airportRepo;

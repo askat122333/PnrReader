@@ -3,15 +3,12 @@ package com.mainTeam.Hakaton.service;
 import com.mainTeam.Hakaton.entity.PnrHistory;
 import com.mainTeam.Hakaton.repository.PnrRepo;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 @AllArgsConstructor
-@NoArgsConstructor
 public class PnrService {
 
     PnrRepo pnrRepo;
@@ -20,10 +17,13 @@ public class PnrService {
 
     AirportService airportService;
 
+
     public String getPnrInNorm(String pnr) {
         StringBuilder stringBuilder = new StringBuilder(pnr.replaceAll("\\s", ""));
         PnrHistory pnr1 = new PnrHistory();
-        pnr1.setCompanyName(companyService.getCompany(stringBuilder.substring(0,2)).getCompanyName());
+//        pnr1.setCompanyName(companyService.getByCompanyCode(stringBuilder.substring(0,2)).getCompanyName());
+        String res = companyService.getByCompanyCode(stringBuilder.substring(0,2));
+        pnr1.setCompanyName(res);
         pnr1.setFlightNumber(stringBuilder.substring(2,6));
         pnr1.setDate(stringBuilder.substring(7,9));
         pnr1.setMonth(stringBuilder.substring(9,12));
