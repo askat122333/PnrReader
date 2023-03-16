@@ -1,37 +1,37 @@
-package com.mainTeam.Hakaton.entity;
+package com.mainTeam.Hakaton.test;
 
 import com.mainTeam.Hakaton.enums.Role;
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-
 import java.util.Collection;
 import java.util.Set;
 
-import static javax.persistence.EnumType.STRING;
-
 @Entity
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "users")
-public class User implements UserDetails {
+@Table(name = "t_user")
+public class UserTest implements UserDetails {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String login;
+    private String username;
     private String password;
-    private String phoneNumber;
-    @Enumerated(value = STRING)
-    private Role role;
-
+    @Transient
+    private String passwordConfirm;
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Set<Role> roles;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
+    }
+
+    @Override
+    public String getPassword() {
         return null;
     }
 
@@ -42,21 +42,21 @@ public class User implements UserDetails {
 
     @Override
     public boolean isAccountNonExpired() {
-        return true;
+        return false;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return true;
+        return false;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return true;
+        return false;
     }
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return false;
     }
 }
