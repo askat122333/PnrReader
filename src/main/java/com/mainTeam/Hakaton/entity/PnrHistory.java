@@ -11,7 +11,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "pnrs")
-public class Pnr {
+public class PnrHistory {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;

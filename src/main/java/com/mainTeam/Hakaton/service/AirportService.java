@@ -2,7 +2,6 @@ package com.mainTeam.Hakaton.service;
 
 import com.mainTeam.Hakaton.entity.AirplaneNumber;
 import com.mainTeam.Hakaton.entity.Airport;
-import com.mainTeam.Hakaton.entity.Company;
 import com.mainTeam.Hakaton.repository.AirportRepo;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -35,7 +34,7 @@ public class AirportService {
         Airport airport1 = airportRepo.findById(airport.getId()).get();
         airport1.setAirportName(airport.getAirportName());
         airport1.setNameOfCity(airport.getNameOfCity());
-        airport1.setAirportPnr(airport.getAirportPnr());
+        airport1.setAirportCode(airport.getAirportCode());
         return airportRepo.save(airport1);
     }
 

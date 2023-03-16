@@ -22,6 +22,6 @@ public class Airport {
     @Column(unique = true,nullable = false)
     private String airportName;
     @Column(unique = true,nullable = false)
-    private String airportPnr;
+    private String airportCode;
 
 }

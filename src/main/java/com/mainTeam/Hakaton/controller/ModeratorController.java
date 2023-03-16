@@ -1,6 +1,6 @@
 package com.mainTeam.Hakaton.controller;
 
-import com.mainTeam.Hakaton.entity.Pnr;
+import com.mainTeam.Hakaton.entity.PnrHistory;
 import com.mainTeam.Hakaton.model.UserDto;
 import com.mainTeam.Hakaton.service.PnrService;
 import com.mainTeam.Hakaton.service.UserService;
@@ -16,28 +16,34 @@ public class ModeratorController {
     PnrService pnrService;
     @Autowired
     UserService userService;
-    @GetMapping ("/pnrReader/{pnr}")
-    public String getPnrInNorm(@PathVariable String pnr){
+
+    @GetMapping("/pnrReader/{pnr}")
+    public String getPnrInNorm(@PathVariable String pnr) {
         return pnrService.getPnrInNorm(pnr);
     }
+
     @PutMapping("/pnr/update")
-    public Pnr updatePnr(Pnr pnr) {
-        return pnrService.updatePnr(pnr);
+    public PnrHistory updatePnr(PnrHistory pnrHistory) {
+        return pnrService.updatePnr(pnrHistory);
     }
+
     @GetMapping("/user/{id}")
-    public UserDto getById (@PathVariable Long id) {
+    public UserDto getById(@PathVariable Long id) {
         return userService.getById(id);
     }
+
     @GetMapping("/user/all")
-    public List<UserDto> getAll () {
+    public List<UserDto> getAll() {
         return userService.getAllUser();
     }
+
     @GetMapping("/pnr/all")
-    public List<Pnr> getAllPnr () {
+    public List<PnrHistory> getAllPnr() {
         return pnrService.getAllPnr();
     }
+
     @GetMapping("/pnr/{id}")
-    public Pnr getPnrById (@PathVariable Long id) {
+    public PnrHistory getPnrById(@PathVariable Long id) {
         return pnrService.getById(id);
     }
 }

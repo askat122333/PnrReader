@@ -18,5 +18,5 @@ public class Company {
     @Column(unique = true,nullable = false)
     private String companyName;
     @Column(unique = true,nullable = false)
-    private String companyPnr;
+    private String companyCode;
 }

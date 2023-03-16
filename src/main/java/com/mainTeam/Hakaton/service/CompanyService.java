@@ -1,7 +1,6 @@
 package com.mainTeam.Hakaton.service;
 
 import com.mainTeam.Hakaton.entity.Company;
-import com.mainTeam.Hakaton.entity.FlightNumber;
 import com.mainTeam.Hakaton.repository.CompanyRepo;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -32,7 +31,7 @@ public class CompanyService {
     public Company updateCompany (Company company) {
         Company company1 = companyRepo.findById(company.getId()).get();
         company1.setCompanyName(company.getCompanyName());
-        company1.setCompanyPnr(company.getCompanyPnr());
+        company1.setCompanyCode(company.getCompanyCode());
         return companyRepo.save(company1);
     }
 
