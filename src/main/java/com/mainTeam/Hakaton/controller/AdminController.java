@@ -38,10 +38,6 @@ public class AdminController {
         return userService.getAllUser();
     }
 
-    @DeleteMapping("/pnr/delete/{id}")
-    public void deletePnr(@PathVariable Long id) {
-        pnrService.deletePnr(id);
-    }
 
     @GetMapping("/pnr/all")
     public List<PnrHistory> getAllPnr() {

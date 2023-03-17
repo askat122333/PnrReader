@@ -36,6 +36,7 @@ public class PnrService {
         pnr1.setArrivalAirport(airportService.getByAirportPnr(stringBuilder.substring(16,19)).getAirportName());
         pnr1.setTerminal(stringBuilder.substring(19,22));
         pnr1.setAirplaneNumber(stringBuilder.substring(30,33));
+        pnrRepo.save(pnr1);
         return pnr1.toString();
     }
 
