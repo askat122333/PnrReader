@@ -30,9 +30,9 @@ public class PnrHistory {
     @Override
     public String toString() {
         return
-                date + ' ' + month + ',' + departureTime + " -- "
+                date + ' ' + month + ',' + departureTime + " -> "
                         + arrivalTime + ',' + departureAirport +
-                        " -- " + arrivalAirport + ',' + airplaneNumber + ',' + companyName + ';';
+                        " -> " + arrivalAirport + ',' + airplaneNumber + ',' + companyName + ';';
 
     }
 }

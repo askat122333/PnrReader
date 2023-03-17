@@ -19,25 +19,28 @@ public class PnrService {
 
 
     public String getPnrInNorm(String pnr) {
-        StringBuilder stringBuilder = new StringBuilder(pnr.replaceAll("\\s", ""));
-        PnrHistory pnr1 = new PnrHistory();
-//        pnr1.setCompanyName(companyService.getByCompanyCode(stringBuilder.substring(0,2)).getCompanyName());
-        String res = companyService.getByCompanyCode(stringBuilder.substring(0,2));
-        pnr1.setCompanyName(res);
-        pnr1.setFlightNumber(stringBuilder.substring(2,6));
-        pnr1.setDate(stringBuilder.substring(7,9));
-        pnr1.setMonth(stringBuilder.substring(9,12));
-        pnr1.setWeekDay(stringBuilder.substring(12,13));
-        StringBuilder stringBuilder1 = new StringBuilder(stringBuilder.substring(22,26));
-        pnr1.setDepartureTime(String.valueOf(stringBuilder1.insert(2,":")));
-        stringBuilder1 = new StringBuilder(stringBuilder.substring(26,30));
-        pnr1.setArrivalTime(String.valueOf(stringBuilder1.insert(2,":")));
-        pnr1.setDepartureAirport(airportService.getByAirportPnr(stringBuilder.substring(13,16)).getAirportName());
-        pnr1.setArrivalAirport(airportService.getByAirportPnr(stringBuilder.substring(16,19)).getAirportName());
-        pnr1.setTerminal(stringBuilder.substring(19,22));
-        pnr1.setAirplaneNumber(stringBuilder.substring(30,33));
-        pnrRepo.save(pnr1);
-        return pnr1.toString();
+        try {
+            StringBuilder stringBuilder = new StringBuilder(pnr.replaceAll("\\s", ""));
+            PnrHistory pnr1 = new PnrHistory();
+            pnr1.setCompanyName(companyService.getByCompanyCode(stringBuilder.substring(0, 2)));
+            pnr1.setFlightNumber(stringBuilder.substring(2, 6));
+            pnr1.setDate(stringBuilder.substring(7, 9));
+            pnr1.setMonth(stringBuilder.substring(9, 12));
+            pnr1.setWeekDay(stringBuilder.substring(12, 13));
+            StringBuilder stringBuilder1 = new StringBuilder(stringBuilder.substring(22, 26));
+            pnr1.setDepartureTime(String.valueOf(stringBuilder1.insert(2, ":")));
+            stringBuilder1 = new StringBuilder(stringBuilder.substring(26, 30));
+            pnr1.setArrivalTime(String.valueOf(stringBuilder1.insert(2, ":")));
+            pnr1.setDepartureAirport(airportService.getByAirportPnr(stringBuilder.substring(13, 16)).getAirportName());
+            pnr1.setArrivalAirport(airportService.getByAirportPnr(stringBuilder.substring(16, 19)).getAirportName());
+            pnr1.setTerminal(stringBuilder.substring(19, 22));
+            pnr1.setAirplaneNumber(stringBuilder.substring(30, 33));
+            pnrRepo.save(pnr1);
+            return pnr1.toString();
+        }catch(Exception e) {
+            return "Ошибка при обработки PNR кода !";
+
+        }
     }
 
     public PnrHistory getById(Long id) {
