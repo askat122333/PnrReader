@@ -25,6 +25,9 @@ public class User {
     private String password;
     @Column(name = "phone_number",nullable = false,unique = true)
     private String phoneNumber;
+    private String email;
+    private String activationCode;
+    private Boolean active;
     @Enumerated(value = STRING)
     private Role role;
 }

@@ -1,20 +1,22 @@
 package com.mainTeam.Hakaton.service;
 
 import com.mainTeam.Hakaton.entity.User;
+import com.mainTeam.Hakaton.enums.Role;
 import com.mainTeam.Hakaton.model.UserDto;
 import com.mainTeam.Hakaton.model.UserSaveDto;
 import com.mainTeam.Hakaton.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 @AllArgsConstructor
 public class UserService {
 UserRepository userRepo;
+MailSender mailSender;
+
     public UserDto getById(Long id) {
         Optional<User> user = userRepo.findById(id);
         UserDto  userDto = new UserDto();
@@ -58,5 +60,45 @@ public User updateUser (UserDto userDto) {
                 user.getLogin(),
                 user.getPhoneNumber()
         );
+    }
+
+    public boolean addUser(User user) {
+        User userFromDb = userRepo.findByLogin(user.getLogin());
+
+        if (userFromDb != null) {
+            return false;
+        }
+
+        user.setActive(true);
+        user.setRole(Role.USER);
+        user.setActivationCode(UUID.randomUUID().toString());
+
+        userRepo.save(user);
+
+        if (!StringUtils.isEmpty(user.getEmail())) {
+            String message = String.format(
+                    "Hello, %s! \n" +
+                            "Welcome to PnrReader. Please, visit next link: http://localhost:9090/activate/%s",
+                    user.getLogin(),
+                    user.getActivationCode()
+            );
+
+            mailSender.send(user.getEmail(), "Activation code", message);
+        }
+
+        return true;
+    }
+    public boolean activateUser(String code) {
+        User user = userRepo.findByActivationCode(code);
+
+        if (user == null) {
+            return false;
+        }
+
+        user.setActivationCode(null);
+
+        userRepo.save(user);
+
+        return true;
     }
 }
