@@ -1,8 +1,8 @@
 package com.mainTeam.Hakaton.service;
 
 import com.mainTeam.Hakaton.entity.User;
+import com.mainTeam.Hakaton.enums.Role;
 import com.mainTeam.Hakaton.model.UserDto;
-import com.mainTeam.Hakaton.model.UserSaveDto;
 import com.mainTeam.Hakaton.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,7 +20,7 @@ UserRepository userRepo;
         UserDto  userDto = new UserDto();
         if (user.isPresent()) {
             userDto.setId(user.get().getId());
-            userDto.setLogin(user.get().getLogin());
+            userDto.setUsername(user.get().getUsername());
             userDto.setPhoneNumber(user.get().getPhoneNumber());
         }
         return userDto;
@@ -36,18 +36,16 @@ UserRepository userRepo;
         return usersDto;
     }
 
-    public Long saveNewPerson(UserSaveDto userSaveDto) {
-        User user = new User();
-        user.setLogin(userSaveDto.getLogin());
-        user.setPassword(userSaveDto.getPassword());
-        return userRepo.save(user).getId();
-    }
+     public User createUser(User user){
+        user.setRole(Role.USER);
+        return userRepo.save(user);
+     }
     public void deleteUserById(Long id) {
         userRepo.deleteById(id);
     }
-public User updateUser (UserDto userDto) {
+    public User updateUser (UserDto userDto) {
         User user = userRepo.findById(userDto.getId()).get();
-    if (user.getLogin() == null) user.setLogin(userDto.getLogin());
+    if (user.getUsername() == null) user.setUsername(userDto.getUsername());
     if(user.getPhoneNumber() == null) user.setPhoneNumber(userDto.getPhoneNumber());
     return userRepo.save(user);
 }
@@ -55,7 +53,9 @@ public User updateUser (UserDto userDto) {
     private UserDto mapToDto (User user) {
         return new UserDto(
                 user.getId(),
-                user.getLogin(),
+                user.getUsername(),
+                user.getPassword(),
+                user.getEmail(),
                 user.getPhoneNumber()
         );
     }

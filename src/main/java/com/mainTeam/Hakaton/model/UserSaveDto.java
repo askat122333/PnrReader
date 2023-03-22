@@ -2,11 +2,13 @@ package com.mainTeam.Hakaton.model;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.stereotype.Service;
 
 @Getter
 @Setter
 public class UserSaveDto {
-    private String login;
+    private Long id;
+    private String username;
+    private String email;
     private String password;
+    private String phoneNumber;
 }

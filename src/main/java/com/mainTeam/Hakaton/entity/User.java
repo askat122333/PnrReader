@@ -7,6 +7,9 @@ import lombok.NoArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 
 import static javax.persistence.EnumType.STRING;
 
@@ -21,7 +24,10 @@ public class User {
     private Long id;
 
     @Column(name = "login",nullable = false,unique = true)
-    private String login;
+    private String username;
+    @Email
+    private String email;
+    @Max(16)@Min(8)
     private String password;
     @Column(name = "phone_number",nullable = false,unique = true)
     private String phoneNumber;
