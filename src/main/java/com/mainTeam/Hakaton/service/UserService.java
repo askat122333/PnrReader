@@ -6,13 +6,16 @@ import com.mainTeam.Hakaton.model.UserDto;
 import com.mainTeam.Hakaton.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 @AllArgsConstructor
+@Validated
 public class UserService {
 UserRepository userRepo;
     public UserDto getById(Long id) {
@@ -36,14 +39,14 @@ UserRepository userRepo;
         return usersDto;
     }
 
-     public User createUser(User user){
+     public User createUser(@Valid  User user){
         user.setRole(Role.USER);
         return userRepo.save(user);
      }
     public void deleteUserById(Long id) {
         userRepo.deleteById(id);
     }
-    public User updateUser (UserDto userDto) {
+    public User updateUser (@Valid UserDto userDto) {
         User user = userRepo.findById(userDto.getId()).get();
     if (user.getUsername() == null) user.setUsername(userDto.getUsername());
     if(user.getPhoneNumber() == null) user.setPhoneNumber(userDto.getPhoneNumber());

@@ -1,11 +1,13 @@
 package com.mainTeam.Hakaton.service;
 
 import com.mainTeam.Hakaton.entity.PnrHistory;
+import com.mainTeam.Hakaton.entity.User;
 import com.mainTeam.Hakaton.repository.PnrRepo;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -44,7 +46,8 @@ public class PnrService {
     }
 
     public PnrHistory getById(Long id) {
-        return pnrRepo.findById(id).get();
+       Optional<PnrHistory> pnrHistory = pnrRepo.findById(id);
+       return pnrHistory.get();
     }
 
     public void deletePnr(Long id) {
